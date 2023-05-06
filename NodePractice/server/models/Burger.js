@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 
-export const Burger = new Schema(
+export const BurgerSchema = new Schema(
   {
     creatorId: {type: Schema.Types.ObjectId, required: true, ref: 'Account' },
     buns: {type: Number, required: true},

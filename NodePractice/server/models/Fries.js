@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 
-export const Fries = new Schema(
+export const FriesSchema = new Schema(
   {
     creatorId: {type: Schema.Types.ObjectId, required: true},
     type: {type: String, required: true},

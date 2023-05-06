@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 
-export const Drink = new Schema(
+export const DrinkSchema = new Schema(
   {
     creatorId: {type: Schema.Types.ObjectId, required: true},
     flavor: {type: String, required: true},
