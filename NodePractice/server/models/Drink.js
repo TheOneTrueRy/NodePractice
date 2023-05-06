@@ -7,5 +7,6 @@ export const DrinkSchema = new Schema(
     flavor: {type: String, required: true},
     size: {type: String, required: true, enum: ['Small', 'Medium', 'Large', 'Super Size']},
     checkedOut: {type: Boolean, default: false}
-  }
+  },
+  {timestamps: true, toJSON: {virtuals: true}}
 )

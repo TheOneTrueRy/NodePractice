@@ -13,5 +13,5 @@ export const BurgerSchema = new Schema(
     specialRequest: {type: String, maxLength: 300},
     checkedOut: {type: Boolean, default: false}
   },
-  {timestamps: true, toJSOn: {virtuals: true}}
+  {timestamps: true, toJSON: {virtuals: true}}
 )
