@@ -1,0 +1,13 @@
+
+  {
+    "name": "nodepractice",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "npm run setup:server",
+      "setup:app": "npm run setup:server && npm run setup:client",
+      "setup:client": "cd NodePractice.client && npm i",
+      "setup:server": "cd NodePractice && npm i",
+      "start": "node NodePractice/index.js"
+    }
+  }
+  
