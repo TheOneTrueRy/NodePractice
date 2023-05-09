@@ -11,6 +11,7 @@ export class BurgersController extends BaseController{
     .get('/:burgerId', this.getBurgerById)
     .use(Auth0Provider.getAuthorizedUserInfo)
     .post('', this.createBurger)
+    .delete('/:burgerId', this.deleteBurgerById)
   }
   async createBurger(req, res, next) {
     try {
