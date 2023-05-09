@@ -42,4 +42,15 @@ export class BurgersController extends BaseController{
       next(error)
     }
   }
+
+  async deleteBurgerById(req, res, next){
+    try {
+      const user = req.user
+      const burgerId = req.params.burgerId
+      const burger = await burgersService.deleteBurgerById(burgerId, user.id)
+      res.send(burger)
+    } catch (error) {
+      next(error)
+    }
+  }
 }
