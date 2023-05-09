@@ -11,6 +11,11 @@ class DrinksService{
     let drink = dbContext.Drinks.findById(drinkId)
     return drink
   }
+
+  async createDrink(drinkData){
+    let drink = dbContext.Drinks.create(drinkData)
+    return drink
+  }
 }
 
 export const drinksService = new DrinksService();
