@@ -3,6 +3,7 @@ import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
 import { burgersService } from "../services/BurgersService.js"
 import { drinksService } from "../services/DrinksService.js"
+import { friesService } from "../services/FriesService.js"
 
 export class AccountController extends BaseController {
   constructor() {
@@ -12,6 +13,7 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .get('/burgers', this.getMyBurgers)
       .get('/drinks', this.getMyDrinks)
+      .get('/fries', this.getMyFries)
   }
 
   async getUserAccount(req, res, next) {
@@ -38,6 +40,15 @@ export class AccountController extends BaseController {
       const user = req.user
       const drinks = drinksService.getMyDrinks(user.id)
       res.send(drinks)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getMyFries(req, res, next){
+    try {
+      const user = req.user
+      const fries = friesService.getMyFries(user.id)
     } catch (error) {
       next(error)
     }
