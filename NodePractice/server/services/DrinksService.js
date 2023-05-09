@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext.js";
+import { Forbidden } from "../utils/Errors.js";
 
 
 class DrinksService{
@@ -15,6 +16,15 @@ class DrinksService{
   async createDrink(drinkData){
     let drink = dbContext.Drinks.create(drinkData)
     return drink
+  }
+
+  async deleteDrinkById(drinkId, userId){
+    let drink = await this.getDrinkById(drinkId)
+    if(drink.creatorId != userId){
+      throw new Forbidden("That's not your drink order to delete!")
+    }
+    await drink.remove()
+    return `Successfully deleted the drink order at id ${drink.id}!`
   }
 }
 
