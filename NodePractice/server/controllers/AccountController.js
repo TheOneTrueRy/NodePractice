@@ -14,6 +14,7 @@ export class AccountController extends BaseController {
       .get('/burgers', this.getMyBurgers)
       .get('/drinks', this.getMyDrinks)
       .get('/fries', this.getMyFries)
+      .get('/order', this.getMyOrder)
   }
 
   async getUserAccount(req, res, next) {
@@ -49,6 +50,17 @@ export class AccountController extends BaseController {
     try {
       const user = req.user
       const fries = friesService.getMyFries(user.id)
+      res.send(fries)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getMyOrder(req, res, next){
+    try {
+      const user = req.user
+      const order = accountService.getMyOrder(user.id)
+      res.send(order)
     } catch (error) {
       next(error)
     }

@@ -7,7 +7,12 @@ class BurgersService{
     let burgers = await dbContext.Burgers.find({creatorId: userId})
     return burgers
   }
-  
+
+  async getMyOrderedBurgers(userId){
+    let burgers = await dbContext.Burgers.find({creatorId: userId, checkedOut: false})
+    return burgers
+  }
+
   async createBurger(burgerData) {
     let burger = await dbContext.Burgers.create(burgerData)
     return burger

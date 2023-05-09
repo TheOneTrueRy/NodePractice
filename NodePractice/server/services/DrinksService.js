@@ -4,22 +4,27 @@ import { Forbidden } from "../utils/Errors.js";
 
 class DrinksService{
   async getAllDrinks(){
-    let drinks = dbContext.Drinks.find()
+    let drinks = await dbContext.Drinks.find()
     return drinks
   }
 
   async getMyDrinks(userId){
-    let drinks = dbContext.Drinks.find({creatorId: userId})
+    let drinks = await dbContext.Drinks.find({creatorId: userId})
+    return drinks
+  }
+
+  async getMyOrderedDrinks(userId){
+    let drinks = await dbContext.Drinks.find({creatorId: userId, checkedOut: false})
     return drinks
   }
 
   async getDrinkById(drinkId){
-    let drink = dbContext.Drinks.findById(drinkId)
+    let drink = await dbContext.Drinks.findById(drinkId)
     return drink
   }
 
   async createDrink(drinkData){
-    let drink = dbContext.Drinks.create(drinkData)
+    let drink = await dbContext.Drinks.create(drinkData)
     return drink
   }
 

@@ -1,4 +1,7 @@
 import { dbContext } from '../db/DbContext'
+import { burgersService } from "./BurgersService.js"
+import { drinksService } from "./DrinksService.js"
+import { friesService } from "./FriesService.js"
 
 // Private Methods
 
@@ -76,6 +79,14 @@ class AccountService {
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     )
     return account
+  }
+
+  async getMyOrder(userId){
+    let burgers = await burgersService.getMyOrderedBurgers(userId)
+    let drinks = await drinksService.getMyOrderedDrinks(userId)
+    let fries = await friesService.getMyOrderedFries(userId)
+    let order = [...burgers, ...drinks, ...fries]
+    return order
   }
 }
 export const accountService = new AccountService()

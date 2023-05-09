@@ -13,6 +13,11 @@ class FriesService{
     return fries
   }
 
+  async getMyOrderedFries(userId){
+    let fries = await dbContext.Fries.find({creatorId: userId, checkedOut: false})
+    return fries
+  }
+
   async getFriesById(friesId){
     let fries = await dbContext.Fries.findById(friesId)
     return fries
