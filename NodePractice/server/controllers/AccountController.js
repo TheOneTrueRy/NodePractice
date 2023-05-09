@@ -65,4 +65,14 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
+
+  async checkOut(req, res, next){
+    try {
+      const user = req.user
+      const order = accountService.checkOut(user.id)
+      res.send(order)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

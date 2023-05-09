@@ -88,5 +88,24 @@ class AccountService {
     let order = [...burgers, ...drinks, ...fries]
     return order
   }
+
+  async checkOut(userId){
+    let burgers = await burgersService.getMyOrderedBurgers(userId)
+    let drinks = await drinksService.getMyOrderedDrinks(userId)
+    let fries = await friesService.getMyOrderedFries(userId)
+    burgers.forEach(burger => {
+      burger.checkedOut = true
+      burger.save()
+    })
+    drinks.forEach(drink => {
+      drink.checkedOut = true
+      drink.save()
+    })
+    fries.forEach(fries => {
+      fries.checkedOut = true
+      fries.save()
+    })
+    return `Successfully checked your order out!`
+  }
 }
 export const accountService = new AccountService()
