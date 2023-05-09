@@ -13,39 +13,39 @@ export class FiresController extends BaseController{
     .post('', this.createFries)
     .delete('/:friesId', this.deleteFriesById)
   }
-  deleteFriesById(req, res, next) {
+  async deleteFriesById(req, res, next) {
     try {
       const user = req.user
       const friesId = req.params.friesId
-      const fries = friesService.deleteFriesById(friesId, user.id)
+      const fries = await friesService.deleteFriesById(friesId, user.id)
       res.send(fries)
     } catch (error) {
       next(error)
     }
   }
-  createFries(req, res, next) {
+  async createFries(req, res, next) {
     try {
       const user = req.user
       const friesData = req.body
       friesData.creatorId = user.id
-      const fries = friesService.createFries(friesData)
+      const fries = await friesService.createFries(friesData)
       res.send(fries)
     } catch (error) {
       next(error)
     }
   }
-  getFriesById(req, res, next) {
+  async getFriesById(req, res, next) {
     try {
       const friesId = req.params.friesId
-      const fries = friesService.getFriesById(friesId)
+      const fries = await friesService.getFriesById(friesId)
       res.send(fries)
     } catch (error) {
       next(error)
     }
   }
-  getAllFries(req, res, next) {
+  async getAllFries(req, res, next) {
     try {
-      const fries = friesService.getAllFries()
+      const fries = await friesService.getAllFries()
       res.send(fries)
     } catch (error) {
       next(error)
