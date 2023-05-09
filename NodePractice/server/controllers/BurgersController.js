@@ -7,6 +7,8 @@ export class BurgersController extends BaseController{
   constructor(){
     super()
     this.router
+    .get('', this.getAllBurgers)
+    .get('/:burgerId', this.getBurgerById)
     .use(Auth0Provider.getAuthorizedUserInfo)
     .post('', this.createBurger)
   }
@@ -16,6 +18,25 @@ export class BurgersController extends BaseController{
       const burgerData = req.body
       burgerData.creatorId = user.id
       const burger = await burgersService.createBurger(burgerData)
+      res.send(burger)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getAllBurgers(req, res, next){
+    try {
+      const burgers = await burgersService.getAllBurgers()
+      res.send(burgers)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getBurgerById(req, res, next){
+    try {
+      const burgerId = req.params.burgerId
+      const burger = await burgersService.getBurgerById(burgerId)
       res.send(burger)
     } catch (error) {
       next(error)

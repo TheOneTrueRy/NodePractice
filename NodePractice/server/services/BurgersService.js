@@ -7,6 +7,16 @@ class BurgersService{
     return burger
   }
 
+  async getAllBurgers(){
+    let burgers = await dbContext.Burgers.find()
+    return burgers
+  }
+
+  async getBurgerById(burgerId){
+    let burger = await dbContext.Burgers.findById(burgerId)
+    return burger
+  }
+
 }
 
 export const burgersService = new BurgersService();
