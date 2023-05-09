@@ -11,6 +11,11 @@ class FriesService{
     let fries = await dbContext.Fries.findById(friesId)
     return fries
   }
+
+  async createFries(friesData){
+    let fries = await dbContext.Fries.create(friesData)
+    return fries
+  }
 }
 
 export const friesService = new FriesService();
