@@ -3,6 +3,11 @@ import { BadRequest, Forbidden } from "../utils/Errors.js";
 
 
 class BurgersService{
+  async getMyBurgers(userId) {
+    let burgers = await dbContext.Burgers.find({creatorId: userId})
+    return burgers
+  }
+  
   async createBurger(burgerData) {
     let burger = await dbContext.Burgers.create(burgerData)
     return burger

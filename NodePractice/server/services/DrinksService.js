@@ -8,6 +8,11 @@ class DrinksService{
     return drinks
   }
 
+  async getMyDrinks(userId){
+    let drinks = dbContext.Drinks.find({creatorId: userId})
+    return drinks
+  }
+
   async getDrinkById(drinkId){
     let drink = dbContext.Drinks.findById(drinkId)
     return drink
