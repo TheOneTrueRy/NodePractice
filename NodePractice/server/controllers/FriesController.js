@@ -10,15 +10,18 @@ export class FiresController extends BaseController{
     .get('/:friesId', this.getFriesById)
     .use(Auth0Provider.getAuthorizedUserInfo)
     .post('', this.createFries)
-    .delete('/:friesId', this.getFriesById)
+    .delete('/:friesId', this.deleteFriesById)
   }
-  createFries(arg0, createFries) {
+  deleteFriesById(req, res, next) {
     throw new Error("Method not implemented.")
   }
-  getFriesById(arg0, getFriesById) {
+  createFries(req, res, next) {
     throw new Error("Method not implemented.")
   }
-  getAllFries(arg0, getAllFries) {
+  getFriesById(req, res, next) {
+    throw new Error("Method not implemented.")
+  }
+  getAllFries(req, res, next) {
     throw new Error("Method not implemented.")
   }
 }
